@@ -25,7 +25,20 @@
         <div class="row">
             <side-nav current-page="index.html"></side-nav>
 
-            <movie-list-cards :movies="watchedMovies"></movie-list-cards>
+            <div class="col-12 col-md-9 py-3 px-4" id="content">
+                <div class="container mt-3">
+                    <div class="d-flex">
+                    <h3>My Movies</h3>
+
+                    <button class="btn btn-primary ms-auto" id="change-view-btn">
+                        Change View
+                    </button>
+                    </div>
+
+                    <movie-list-cards :movies="watchedMovies"></movie-list-cards>
+
+                </div>
+            </div>
 
         </div>
 
