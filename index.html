@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moobies!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="app">
+
+    <nav class="navbar">
+        <div class="container-fluid mx-3">
+            <a class="navbar-brand" href="#">Moobeez! 🐄🐝</a>
+        </div>
+    </nav>
+
+
+    <div class="" id="page">
+
+        <!-- Navbar -->
+
+        <div class="row">
+            <side-nav current-page="index.html"></side-nav>
+
+            <movie-list-cards :movies="watchedMovies"></movie-list-cards>
+
+        </div>
+
+    </div>
+
+    <add-watched-movie-modal></add-watched-movie-modal>
+
+    <footer class="bg-dark">
+        <div class="container text-center py-3">
+            <p class="mb-0">&copy; 2026 Moobeez! Copyleft maybe?!</p>
+        </div>
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous">
+</script>
+
+<script type="module">
+    // create the app
+    import app from './js/app.js';
+
+    // tell it to run on the div #app
+    app.mount('#app');
+</script>
+</body>
+</html>
