@@ -23,6 +23,8 @@ const AddWatchedMovieModal = {
 
     },
 
+    emits: ['add-watched-movie'],
+
     methods: {
         open() {
             this.bsModal.show();
@@ -31,9 +33,13 @@ const AddWatchedMovieModal = {
             this.bsModal.hide();
         },
         addWatchedMovie() {
-            this.newMovie.id = Math.ceil(Math.random()*1000000).toString();
-            //add item to list
-            //this.movieList.push({...this.newMovie});
+            this.$emit('add-watched-movie', {
+                ...this.newMovie,
+                name: (this.newMovie.name || '').trim(),
+                director: (this.newMovie.director || '').trim(),
+                description: (this.newMovie.description || '').trim(),
+                mainThought: (this.newMovie.mainThought || '').trim(),
+            });
 
             //clear the form
             this.newMovie = {
@@ -48,6 +54,8 @@ const AddWatchedMovieModal = {
                 mainThought: '',
                 comments: [],
             }
+
+            this.close();
         },
     },
 

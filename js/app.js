@@ -293,12 +293,33 @@ const app = createApp({
                 text: comment.text,
             });
         },
-        addWatchedMovie() {
-            this.newMovie.id = Math.ceil(Math.random()*1000000).toString();
-            //add item to list
-            this.movieList.push({...this.newMovie});
+        addWatchedMovie(movieFromModal = null) {
+            const incomingMovie = movieFromModal
+                ? {...movieFromModal}
+                : {...this.newMovie};
+            const genresSource = Array.isArray(incomingMovie.genres)
+                ? incomingMovie.genres.join(', ')
+                : (incomingMovie.genres || '');
 
-            //clear the form
+            const movieToAdd = {
+                id: Math.ceil(Math.random()*1000000).toString(),
+                watched: true,
+                name: (incomingMovie.name || '').trim(),
+                director: (incomingMovie.director || '').trim(),
+                poster: (incomingMovie.poster || '').trim() || 'images/Placeholder.jpg',
+                year: Number(incomingMovie.year) || 2000,
+                genres: this.parseGenres(genresSource),
+                description: (incomingMovie.description || '').trim(),
+                mainThought: (incomingMovie.mainThought || '').trim(),
+                comments: Array.isArray(incomingMovie.comments) ? incomingMovie.comments : [],
+            };
+
+            this.movieList.push(movieToAdd);
+
+            if (movieFromModal) {
+                return;
+            }
+
             this.newMovie = {
                 id: Math.ceil(Math.random()*1000000).toString(),
                 watched: true,
@@ -312,6 +333,7 @@ const app = createApp({
                 comments: [],
             }
         },
+
         addMovieToList() {
             this.newMovie.watched = false;
             //add item to list
